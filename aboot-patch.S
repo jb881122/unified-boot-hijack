@@ -27,12 +27,8 @@ start:
     bl patch_name
 
     /* Jump back to the now-patched bootloader */
-    /* Do this as a call because it may return if it fails */
-    ldr r9, boot_linux_from_emmc
-    blx r9
-
-    /* We failed, halt the system now to avoid bootloops or strange behavior */
-    b .
+    ldr r9, bl_addr
+    bx r9
 
 patch_name:
     ldrb r8, [r10], #1
@@ -44,8 +40,8 @@ patch_name:
 .align
 
 /* Offsets obtained from reverse-engineering the bootloader */
-boot_linux_from_emmc:
-    .word 0x0FF1244C
+bl_addr:
+    .word 0x0FF00000
 unified_addr:
     .word 0x0FFFF000
 use_signed_kernel:

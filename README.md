@@ -69,7 +69,7 @@ After the reboot, the bootloader finds a valid header for unified boot and runs 
 - Security checks are disabled by making the `use_unsigned_kernel` function return 0
 - Recovery boot is forced (to allow more room for the partition name since "recovery" is a long name)
 - The partition name is patched to allow booting from a non-previously-checked partition
-- Finally, the now-patched `boot_linux_from_emmc` function is called again.
+- Finally, the now-patched bootloader is ran again.
 
 ## Room for Improvement
 
