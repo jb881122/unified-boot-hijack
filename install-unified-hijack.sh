@@ -5,7 +5,7 @@ FILE_DROP_PATH=//data/local/tmp
 
 # Install /system hijack
 adb push unified.tar.gz $FILE_DROP_PATH/
-adb push install.sh $FILE_DROP_PATH/
+adb push install.sh-internal $FILE_DROP_PATH/install.sh
 adb shell su -c "chmod 755 $FILE_DROP_PATH/install.sh"
 adb shell su -c "$FILE_DROP_PATH/install.sh"
 

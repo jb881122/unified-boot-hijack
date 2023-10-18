@@ -9,7 +9,7 @@ clean:
 
 unified.zip: dist/unified.tar.gz dist/install-unified-hijack.sh \
 		dist/aboot-new.img dist/boot-old.img dist/recovery-new.img \
-		dist/boot-new.img
+		dist/boot-new.img dist/install.sh-internal
 	zip -r -j unified.zip dist
 
 
@@ -32,6 +32,9 @@ dist/recovery-new.img: dist recovery-new.img
 
 dist/boot-new.img: dist boot-new.img
 	cp boot-new.img dist/
+
+dist/install.sh-internal: dist install.sh
+	cp install.sh dist/install.sh-internal
 
 dist:
 	mkdir -p dist
