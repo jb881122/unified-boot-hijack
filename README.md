@@ -66,7 +66,7 @@ This hijack uses the fact that memory is not cleared on reboot to make the bootl
 
 After the reboot, the bootloader finds a valid header for unified boot and runs our code. Then:
 - The header magic is changed to avoid running our code again
-- Security checks are disabled by making the `use_unsigned_kernel` function return 0
+- Security checks are disabled by making the `use_signed_kernel` function return 0
 - Recovery boot is forced (to allow more room for the partition name since "recovery" is a long name)
 - The partition name is patched to allow booting from a non-previously-checked partition
 - Finally, the now-patched bootloader is ran again.
