@@ -16,6 +16,7 @@ Quirks / Things to keep in mind:
 - The boot sequence involves rebooting from an old signed/authorized boot image when the hijack takes place, so it will look like the device is booting twice. This is normal and expected.
 - Booting to recovery mode by any usual means will not work. To boot to recovery mode, toggle any non-Power key while the keypad is illuminated just before the device reboots itself.
 - Since this hijacks a script in the `system` partition, if you flash anything to that partition, you will need to make sure that partition includes the hijack before rebooting.
+- This doesn't work 100% of the time. Sometimes, especially after rebooting, you may end up with a black screen with a green LED. To get out of this, force-reboot into fastboot mode and use `fastboot boot` to load an image. To help avoid this, power the phone off and on instead of rebooting.
 
 ## How to Use
 
