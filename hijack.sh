@@ -40,6 +40,9 @@ if [ $ORIG_KERN -eq 1 ]; then
     $BBX dd if=$HIJACK_DIR/$PART_2_FILE of=/dev/mem bs=1024 seek=524288
     $BBX dd if=$HIJACK_DIR/parsed-device-tree.bin of=/dev/mem bs=1024 seek=524290
 
+    # Prevent accidentally triggering a reboot to download mode
+    echo "0" > /sys/module/restart/parameters/download_mode
+
     # Reboot as quickly as possible
     echo "b" > /proc/sysrq-trigger
 
