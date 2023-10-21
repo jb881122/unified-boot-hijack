@@ -9,14 +9,13 @@ clean:
 
 unified.zip: dist/unified.tar.gz dist/install-unified-hijack.sh \
 		dist/aboot-new.img dist/boot-old.img dist/recovery-new.img \
-		dist/boot-new.img dist/install.sh-internal
+		dist/boot-new.img dist/install.sh-internal dist/busybox
 	zip -r -j unified.zip dist
 
 
-dist/unified.tar.gz: system/busybox system/hijack.sh \
-		system/parsed-device-tree.bin system/unified-header.bin \
-		system/aboot-patch-normal.bin system/aboot-patch-recovery.bin \
-		| dist
+dist/unified.tar.gz: system/hijack.sh system/parsed-device-tree.bin \
+		system/unified-header.bin system/aboot-patch-normal.bin \
+		system/aboot-patch-recovery.bin | dist
 	tar -C system -czvf dist/unified.tar.gz .
 
 dist/install-unified-hijack.sh: install-unified-hijack.sh | dist
@@ -37,12 +36,12 @@ dist/boot-new.img: boot-new.img | dist
 dist/install.sh-internal: install.sh | dist
 	cp install.sh dist/install.sh-internal
 
+dist/busybox: busybox | dist
+	cp busybox dist/
+
 dist:
 	mkdir -p dist
 
-
-system/busybox: busybox | system
-	cp busybox system/
 
 system/hijack.sh: hijack.sh | system
 	cp hijack.sh system/
