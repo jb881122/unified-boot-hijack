@@ -36,7 +36,7 @@ Prerequisites:
 
 Steps:
 
-- Download the appropriate ZIP file from the releases page
+- Download the appropriate ZIP file from the [releases page](https://github.com/jb881122/unified-boot-hijack/releases)
 - Extract the ZIP into a working directory
 - Go to that directory in Bash
 - Plug your device in and make sure USB debugging is functional
