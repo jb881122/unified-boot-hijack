@@ -17,7 +17,7 @@ Quirks / Things to keep in mind:
 - Booting to recovery mode by any usual means will not work. To boot to recovery mode, toggle any non-Power key while the keypad is illuminated just before the device reboots itself.
 - Since this hijacks a script in the `system` partition, if you flash anything to that partition, you will need to make sure that partition includes the hijack before rebooting.
 
-Likely fixed in v0.2:
+Likely fixed in v0.3:
 
 - This doesn't work 100% of the time. Sometimes, especially after rebooting, you may end up with a black screen with a green LED. To get out of this, force-reboot into fastboot mode and use `fastboot boot` to load an image. To help avoid this, power the phone off and on instead of rebooting.
 

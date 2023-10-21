@@ -35,6 +35,9 @@ if [ $ORIG_KERN -eq 1 ]; then
         echo '[unified] Booting normally...' > /dev/kmsg
     fi
 
+    # Sync here, the system will be unstable after this point
+    sync
+
     # Write our unified-boot hijack to memory
     $BBX dd if=$HIJACK_DIR/unified-header.bin of=/dev/mem bs=1024 seek=262140
     $BBX dd if=$HIJACK_DIR/$PART_2_FILE of=/dev/mem bs=1024 seek=524288
@@ -44,7 +47,7 @@ if [ $ORIG_KERN -eq 1 ]; then
     echo "0" > /sys/module/restart/parameters/download_mode
 
     # Reboot as quickly as possible
-    echo "b" > /proc/sysrq-trigger
+    echo "c" > /proc/sysrq-trigger
 
 else
     echo '[unified] Non-original kernel already running, exiting...' > /dev/kmsg
