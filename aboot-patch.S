@@ -18,13 +18,20 @@ start:
 
     /* Always boot to recovery (so we can patch the longer partition name) */
     ldr r9, boot_recovery_check
-    ldr r8, nop_instr
+    ldr r8, cmp_pc_0_instr
     str r8, [r9]
 
     /* Change partition name */
     ldr r9, recovery_part_name
     adr r10, new_part_name
     bl patch_name
+
+    /* Read ssd partition regardless of unlock status */
+    ldr r9, is_unlocked_check
+    ldr r8, cmp_r0_r0_instr
+    str r8, [r9]
+    ldr r9, is_tampered_check
+    str r8, [r9]
 
     /* Jump back to the now-patched bootloader */
     ldr r9, bl_addr
@@ -45,15 +52,21 @@ bl_addr:
 unified_addr:
     .word 0x0FFFF000
 use_signed_kernel:
-    .word 0x0FF10238
+    .word 0x0FF14724
 recovery_part_name:
-    .word 0x0FF330A8
+    .word 0x0FF3F004
 boot_recovery_check:
-    .word 0x0FF12498
+    .word 0x0FF173A0
+is_unlocked_check:
+    .word 0x0FF17980
+is_tampered_check:
+    .word 0x0FF1798C
 
 /* ARM instructions we use for patching */
-nop_instr:
-    .word 0xE1A00000
+cmp_pc_0_instr:
+    .word 0xE35F0000
+cmp_r0_r0_instr:
+    .word 0xE1500000
 mov_r0_0_instr:
     .word 0xE3A00000
 bx_lr_instr:

@@ -6,7 +6,7 @@ This repository is a proof-of-concept for exploitation of the unified boot mode 
 
 **WARNING:** This is currently intended for the Kyocera DuraForce E6560 (AT&T) ONLY. Running it on any other phone will likely cause it to become a permenent brick. Bricking your device is not completely impossible regardless if something goes wrong. You have been warned; I am not responsible for what happens.
 
-The riskiest operation is when the `aboot` partition is flashed. To be cautious, make sure its CRC32 is `8d24ee32` before doing anything else.
+The riskiest operation is when the `aboot` partition is flashed. To be cautious, make sure its CRC32 is `43ee8c5a` before doing anything else.
 
 This isn't a bootloader unlock, but it will be about as close as you can get in many cases. This allows custom boot and recovery images to be booted from the device's EMMC memory. By default, TWRP is installed along with the stock boot image with a recompiled kernel.
 
